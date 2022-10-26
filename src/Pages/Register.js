@@ -26,10 +26,11 @@ const Register = () => {
         createUser(email, password)
         .then(res => {
             const user = res.user;
-            console.log(user);
             form.reset();
             handleUpdateUserProfile(name, photoURL);
+            handleVerifyEmail();
             toast.success('Your registration successfully completed')
+            console.log(user);
         })
         .catch(error => console.error('error',error))
     }
