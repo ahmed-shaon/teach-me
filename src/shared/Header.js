@@ -1,46 +1,69 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Swithcer from '../Theme/Swithcer';
+import { FaBook, FaUserCircle } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => console.log(error))
+    }
     return (
-        <div className="navbar bg-base-100">
-            <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
-            </div>
-            <div className="flex-none">
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle">
-                        <div className="indicator">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                            <span className="badge badge-sm indicator-item">8</span>
-                        </div>
+        <div className="navbar text-gray-800 dark:text-gray-100 bg-violet-300 dark:bg-base-100 drop-shadow-lg">
+            <div className="navbar-start">
+                <div className="dropdown">
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-                        <div className="card-body">
-                            <span className="font-bold text-lg">8 Items</span>
-                            <span className="text-info">Subtotal: $999</span>
-                            <div className="card-actions">
-                                <button className="btn btn-primary btn-block">View cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" />
-                        </div>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white dark:bg-base-100 rounded-box w-52">
+                        <li><Link to='/courses'>Courses</Link></li>
+                        <li><Link to='/faq'>FAQ</Link></li>
+                        <li><Link to='/blog'>Blog</Link></li>
+                        <li tabIndex={0}>
+                            {
+                                user?.uid ? user?.photURL ? <img src={user.photoURL} alt="profile" /> : <FaUserCircle /> :
+                                    <Link to='/login' className="justify-between">
+                                        Login
+                                        <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                                    </Link>
+                            }
+                            <ul className="p-2">
+
+                                <li><a>Profile</a></li>
+                            </ul>
                         </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
                     </ul>
                 </div>
+                <Link to='/' className="btn btn-ghost normal-case text-xl"><FaBook className='text-xl mr-1 text-green-200' />teachMe</Link>
+            </div>
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal p-0">
+                    <li><Link to='/courses'>Courses</Link></li>
+                    <li><Link to='/faq'>FAQ</Link></li>
+                    <li><Link to='/blog'>Blogs</Link></li>
+                    <li tabIndex={0}>
+                        {
+                            user?.uid ? user?.photoURL ?<img className='w-6 h-6 mt-3 p-0 rounded-3xl' src={user.photoURL} alt="profile" /> : <p><FaUserCircle className='text-gray-800 dark:text-gray-100 text-2xl' /></p>
+                                : <Link to='/login' className="justify-between">
+                                    Login
+                                </Link>
+                        }
+                        <ul className="bg-violet-300 dark:bg-violet-600">
+                            {
+                                user?.uid && <li className='p-2'>
+                                    <p className=''>{user?.displayName ? user.displayName: <>user name</>}</p>
+                                    <button onClick={handleLogOut} className='border border-voilet-300 px-4 py-1 hover:bg-violet-400 dark:hover:bg-violet-800'>LogOut</button></li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div className="navbar-end">
+                <Swithcer />
             </div>
         </div>
     );
