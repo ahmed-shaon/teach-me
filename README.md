@@ -1,6 +1,8 @@
 
 The name of this project is "teachMe"
 
+Live Site Link:  https://teach-me-51df1.web.app
+
 
 -----------about project--------------
 It is a programming tutorial base website. In this website there is tutorial about 6 different courses. I use server to upload the api. I create fake data to make api. 
@@ -32,3 +34,4 @@ In the home page there is two button and click on that button it will navigate y
 4.react-icon
 5.react-to-pdf
 6.react-toggle-dark-mode
+7.daisy-ui

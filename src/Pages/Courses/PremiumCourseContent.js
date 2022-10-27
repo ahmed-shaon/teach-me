@@ -10,17 +10,13 @@ const PremiumCourseContent = () => {
     const options = {
         orientation: 'portrait',
         unit: 'in',
-        format: [12,5]
+        format: [12, 5]
     };
     const { name, title, description, courseContent } = course;
     const { moreContent, tips, outcome } = courseContent.premiumContent;
     const handleCommentSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
-        if(e.target.value){
-            
-            toast.success("Thank you for your comment")
-        }
+        toast.success("Thank you for your comment");
         e.target.reset();
     }
     return (
