@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
-import Blog from "../Pages/Blog";
+import Blog from "../Pages/Blog/Blog";
+import BlogDetails from "../Pages/Blog/BlogDetails";
 import CourseDetails from "../Pages/Courses/CourseDetails";
 import Courses from "../Pages/Courses/Courses";
 import PremiumCourseContent from "../Pages/Courses/PremiumCourseContent";
@@ -41,7 +42,13 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/blog',
-                element: <Blog />
+                element: <Blog />,
+                loader: () => fetch('http://localhost:5000/blog')
+            },
+            {
+                path:'/blog/:id',
+                element:<BlogDetails />,
+                loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
             },
             {
                 path: '/profile',
