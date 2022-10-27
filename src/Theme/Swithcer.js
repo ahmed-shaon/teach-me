@@ -18,7 +18,7 @@ const Swithcer = () => {
             onChange={toggleDarkMode}
             size={20}
             ></DarkModeSwitch> 
-            <h3 className='text-gray-800 dark:text-gray-300 ml-2 mr-4'>{colorTheme === 'light' ? "Dark mode" : "light mode"}</h3>           
+            <h3 className='text-gray-800 dark:text-gray-300 ml-2 mr-4'>{colorTheme === 'light' ? "Dark mode" : "Light mode"}</h3>           
         </div>
     );
 };
