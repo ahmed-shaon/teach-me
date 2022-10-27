@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const BlogCard = ({blog}) => {
-    console.log(blog)
+const BlogCard = ({blog}) => {    
     const {question, answer, img, id} = blog;
     return (
         <div>
