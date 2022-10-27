@@ -1,14 +1,22 @@
 import React from 'react';
+import { createRef } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import ReactToPdf from "react-to-pdf";
+
 
 const CourseDetails = () => {
     const course = useLoaderData();
+    const ref = createRef();
+    const options = {
+        orientation: 'portrait',
+        unit: 'in',
+        format: [8,5]
+    };
     const { id, name, img, description, courseContent } = course;
-    console.log(course);
     return (
-        <section className="dark:bg-gray-800 text-gray-800 dark:text-gray-100">
+        <section  className="dark:bg-gray-800 text-gray-800 dark:text-gray-100">
             <div className="container flex flex-col-reverse mx-auto lg:flex-row">
-                <div className="flex flex-col px-6 py-8 space-y-6 rounded-sm sm:p-8 lg:p-12 lg:w-1/2 xl:w-2/5 bg-violet-200 dark:bg-violet-400 dark:text-gray-900">
+                <div ref={ref}  className="flex flex-col px-6 py-8 space-y-6 rounded-sm sm:p-8 lg:p-12 lg:w-1/2 xl:w-2/5 bg-violet-200 dark:bg-violet-400 dark:text-gray-900">
                     <div className="flex space-x-2 sm:space-x-4">
                         <div className="space-y-2">
                             <p className="text-lg font-medium leading-snug">About</p>
@@ -40,7 +48,11 @@ const CourseDetails = () => {
                     <div className='bg-gray-300 dark:bg-gray-500 py-3 flex justify-between items-center'>
                         <p className='ml-2'>{course.uploadDate}</p>
                         <h3 className='text-2xl font-bold'>{name}</h3>
-                        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Download</button>
+                        <ReactToPdf targetRef={ref} filename="content.pdf" options={options} x={.1} y={.1} scale={0.9}>
+                            {({ toPdf }) => (
+                                <button onClick={toPdf} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Download</button>
+                            )}
+                        </ReactToPdf>                        
                     </div>
                     <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
                         <img src={img} alt="" className="rounded-lg shadow-lg dark:bg-gray-500 aspect-video sm:min-h-96" />

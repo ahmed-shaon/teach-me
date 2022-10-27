@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const MainContent = ({ course }) => {
     const { img, name, title, rating, id } = course;
-    console.log(rating.number)
     return (
         <div className="card w-full bg-gray-300 dark:bg-gray-700 dark:border-b-gray-800 text-gray-900 dark:text-gray-100 shadow-xl">
             <figure><img src={img} alt="Shoes" /></figure>
