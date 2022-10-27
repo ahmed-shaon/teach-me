@@ -47,11 +47,12 @@ const AuthProvider = ({children}) => {
     //Get User update
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            if(currentUser === null || currentUser?.emailVerified){
-                setUser(currentUser);
-            }
+            setUser(currentUser);
             setLoading(false);
-        })
+            //for email verification
+        //     if(currentUser === null || currentUser?.emailVerified){
+        //     }
+         })
 
         return () => {
             unsubscribe();

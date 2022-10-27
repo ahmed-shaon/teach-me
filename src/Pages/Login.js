@@ -24,13 +24,13 @@ const Login = () => {
                 console.log(user);
                 setError('');
                 form.reset();
-                if (user?.emailVerified) {
+                navigate(from, { replace: true });
+                // if (user?.emailVerified) {
 
-                    navigate(from, { replace: true });
-                }
-                else {
-                    toast.error('Please very your email');
-                }
+                // }
+                // else {
+                //     toast.error('Please very your email');
+                // }
             })
             .catch(error => {
                 console.error('error', error);
