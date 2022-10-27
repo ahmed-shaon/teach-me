@@ -52,7 +52,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile />
+                element: <PrivateRoute><Profile /></PrivateRoute>
             },
             {
                 path: '/courses/:id',

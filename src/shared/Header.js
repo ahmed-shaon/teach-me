@@ -39,7 +39,7 @@ const Header = () => {
                             <ul className="bg-violet-400 dark:bg-violet-600">
                                 {
                                     user?.uid && <li className='p-2 overflow-visible z-100'>
-                                        <p className=''><Link to='/profile'>{user?.displayName ? user.displayName : <>user name</>}</Link></p>
+                                        <p className='hover:bg-violet-500 border border-1 py-1 mb-1'><Link to='/profile'>{user?.displayName ? user.displayName : <>user name</>}</Link></p>
                                         <button onClick={handleLogOut} className='border border-voilet-300 px-4 py-1 hover:bg-violet-400 dark:hover:bg-violet-800'>LogOut</button></li>
                                 }
                             </ul>
@@ -63,7 +63,7 @@ const Header = () => {
                         <ul className="bg-violet-400 dark:bg-violet-600">
                             {
                                 user?.uid && <li className='p-2 overflow-visible z-100'>
-                                    <p className=''><Link to='/profile'>{user?.displayName ? user.displayName : <>user name</>}</Link></p>
+                                    <p className='hover:bg-violet-500 border border-1 py-1 mb-1'><Link to='/profile'>{user?.displayName ? user.displayName : <>user name</>}</Link></p>
                                     <button onClick={handleLogOut} className='border border-voilet-300 px-4 py-1 hover:bg-violet-500 dark:hover:bg-violet-800'>LogOut</button></li>
                             }
                         </ul>
