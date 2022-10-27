@@ -10,6 +10,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
     const { userLogin, loginWithGoogle, loginWithFacebook, loginWithGithub } = useContext(AuthContext);
     const handleLoginSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +26,7 @@ const Login = () => {
                 form.reset();
                 if (user?.emailVerified) {
 
-                    navigate('/');
+                    navigate(from, { replace: true });
                 }
                 else {
                     toast.error('Please very your email');

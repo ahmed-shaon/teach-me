@@ -4,7 +4,7 @@ import { FaBook } from "react-icons/fa";
 const Footer = () => {
     return (
 
-        <footer className="p-4 text-gray-800  bg-violet-300  rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
+        <footer className="p-4 text-gray-800 h-full  bg-violet-300  rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
             <div className="sm:flex sm:items-center sm:justify-between">
                 <a href="https://flowbite.com/" className="flex items-center mb-4 sm:mb-0">
                 <FaBook className='text-xl mr-1 text-green-200'/>
